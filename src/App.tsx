@@ -3,23 +3,41 @@ import { useAppSelector, useAppDispatch } from "./app/hooks";
 
 import CardContainer from "./components/CardContainer/CardContainer";
 
-import { fetchAPI } from "./reducers/coinReducer";
-import { selectStatus } from "./app/coinSlice";
+import ICoin from './interfaces/ICoin';
 
-import { STATE_STATUS } from "./constants";
+import { fetchAPI } from "./reducers/coinReducer";
+import { selectStatus, selectAllCoins, addCoinToRender } from "./app/coinSlice";
+
+import { STATE_STATUS, LOCAL_STORAGE_RENDERED_CARDS_KEY } from "./constants";
 
 import "./App.css";
 
 const App = () => {
   const dispatch = useAppDispatch();
   const status = useAppSelector(selectStatus);
+  const coins: ICoin[] = useAppSelector(selectAllCoins);
 
   useEffect(() => {
     dispatch(fetchAPI());
   }, []);
 
   useEffect(() => {
-    // TODO: load data from local storage
+    if (status === STATE_STATUS.SUCCESS) {
+      const coinsFromPreviousSession = localStorage.getItem(
+        LOCAL_STORAGE_RENDERED_CARDS_KEY,
+      );
+
+      if (coinsFromPreviousSession) {
+        const coinsInLocalStorage = coinsFromPreviousSession.split(",");
+
+        coinsInLocalStorage.forEach((coin) => dispatch(addCoinToRender(coin)));
+      } else {
+        // if the app is visited fo the first time
+        for (let i = 0; i < 3; i += 1) {
+          dispatch(addCoinToRender(coins[i].name));
+        }
+      }
+    }
   }, [status]);
 
   return (

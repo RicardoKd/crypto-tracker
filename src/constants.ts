@@ -10,11 +10,13 @@ const STATE_STATUS: { [key: string]: string } = {
   IDLE: "idle",
 };
 
+const LOCAL_STORAGE_RENDERED_CARDS_KEY = "renderedCoins";
+
 export {
   TOP_50_COINS,
   // IS_MOBILE_DEVICE,
   // TILT_CONFIG,
-  // LOCAL_STORAGE_RENDERED_CARDS_KEY,
+  LOCAL_STORAGE_RENDERED_CARDS_KEY,
   STATE_STATUS,
   SLICE_NAMES,
 };
