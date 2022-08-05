@@ -1,11 +1,14 @@
-const TOP_50_COINS : string = "https://api.coingecko.com/api/v3/coins";
+const TOP_50_COINS: string = "https://api.coingecko.com/api/v3/coins";
 
-const SLICE_NAMES : { [key: string]: string } = {
+const SLICE_NAMES: { [key: string]: string } = {
   COIN_SLICE: "coins",
 };
 
-const STATE_STATUS : { [key: string]: string } = { SUCCESS: "succeeded", LOADING: "loading", IDLE: "idle" };
-
+const STATE_STATUS: { [key: string]: string } = {
+  SUCCESS: "succeeded",
+  LOADING: "loading",
+  IDLE: "idle",
+};
 
 export {
   TOP_50_COINS,

@@ -1,8 +1,7 @@
 import { createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { TOP_50_COINS } from "../constants";
 
-import ICoinState from '../interfaces/ICoinState';
-
+import ICoinState from "../interfaces/ICoinState";
 
 export const fetchAPI = createAsyncThunk("coins/fetchAPI", async () => {
   const response = await fetch(TOP_50_COINS);
@@ -18,6 +17,13 @@ export const reducers = {
       value: [...state.value, action.payload],
     };
 
+    return newState;
+  },
+  setCoinsToRender(state: ICoinState, action: PayloadAction<string[]>) {
+    const newState = {
+      ...state,
+      value: [...action.payload],
+    };
     return newState;
   },
   removeCoinFromRender(state: ICoinState, action: PayloadAction<string>) {

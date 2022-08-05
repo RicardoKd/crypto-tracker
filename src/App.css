@@ -5,3 +5,26 @@
   position: relative;
   overflow: hidden;
 }
+
+.background {
+  position: fixed;
+  width: 300%;
+  height: 300%;
+  top: -100%;
+  left: -100%;
+  z-index: -1;
+  background-image: linear-gradient(0deg, #3503ad, #f7308c);
+  animation: gradient 5s linear infinite;
+}
+
+@keyframes gradient {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

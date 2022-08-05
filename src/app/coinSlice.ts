@@ -30,6 +30,7 @@ export const coinSlice = createSlice({
 
 export const {
   addCoinToRender,
+  setCoinsToRender,
   removeCoinFromRender,
   updateRenderedCoin,
 } = coinSlice.actions;
