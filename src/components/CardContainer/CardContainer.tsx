@@ -2,8 +2,8 @@ import React from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 
 import { ReactSortable, ItemInterface } from "react-sortablejs";
-// import CoinCard from '../CoinCard/CoinCard';
-import TiltCoinCard from '../CoinCard/TiltCoinCard';
+import TiltCoinCard from "../CoinCard/TiltCoinCard";
+import TiltCoinCardCreatorCard from "../CoinCardCreatorCard/TiltCoinCardCreatorCard";
 
 import { selectRenderedCoins, setCoinsToRender } from "../../app/coinSlice";
 
@@ -14,7 +14,7 @@ const CardContainer = () => {
 
   const dispatch = useAppDispatch();
 
-  const checkListIdenticaltoRenderedCoins = (list: string[]) : boolean => {
+  const checkListIdenticaltoRenderedCoins = (list: string[]): boolean => {
     let i = 0;
     let areIdentical = true;
 
@@ -29,13 +29,11 @@ const CardContainer = () => {
     return areIdentical;
   };
 
-  const reactSortableSetList = (newList: ItemInterface[]) : void => {
+  const reactSortableSetList = (newList: ItemInterface[]): void => {
     if (!newList.length) {
       return;
     }
-    const newListFormated = newList.map(
-      (el) => el.coinName,
-    );
+    const newListFormated = newList.map((el) => el.coinName);
 
     if (checkListIdenticaltoRenderedCoins(newListFormated)) {
       return;
@@ -44,7 +42,7 @@ const CardContainer = () => {
     dispatch(setCoinsToRender(newListFormated));
   };
 
-  const reactSortableGetList = renderedCoins.map((coinName) : ItemInterface => {
+  const reactSortableGetList = renderedCoins.map((coinName): ItemInterface => {
     return { coinName, id: Math.random() };
   });
 
@@ -60,7 +58,7 @@ const CardContainer = () => {
       {renderedCoins.map((coinName, index) => (
         <TiltCoinCard coinName={coinName} key={index} />
       ))}
-      {/* <TiltCoinCardCreatorCard /> */}
+      <TiltCoinCardCreatorCard />
     </ReactSortable>
   );
 };
