@@ -1,0 +1,37 @@
+.coinCard {
+  background-color: var(--card-bg-color);
+  font-size: 1em;
+  position: relative;
+  cursor: move;
+}
+
+.coinCardface2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  transition: var(--main-transition-time);
+  border-radius: var(--card-border-radius);
+  overflow-y: scroll;
+  background-color: var(--card-bg-color);
+}
+
+.goBackBtn {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  height: 30px;
+  font-weight: 600;
+  font-size: 25px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+.coinCardface2Active {
+  height: 100%;
+}

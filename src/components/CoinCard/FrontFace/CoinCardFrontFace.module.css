@@ -1,0 +1,17 @@
+.coinCardName {
+  font-weight: 800;
+  margin: 15px 0;
+}
+
+.coinCardExchangeRate {
+  font-weight: 600;
+}
+
+.coinCardExchangeRate,
+.coinCardName {
+  text-align: center;
+}
+
+.cardImg {
+  -webkit-user-drag: none;
+}

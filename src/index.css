@@ -32,6 +32,49 @@ body {
   overflow: overlay;
 }
 
+.hide {
+  display: none;
+}
+
+.card {
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: var(--card-padding);
+  box-shadow: var(--card-box-shadow);
+  border-radius: var(--card-border-radius);
+  animation: card-show-animation 1s ease forwards;
+  margin: 10px;
+}
+
+@keyframes card-show-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animated-text {
+  color: transparent;
+  animation: text-animation 6s ease infinite;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  background-clip: text;
+}
+
+@keyframes text-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 /* scrollbar */
 ::-webkit-scrollbar {
   width: var(--scrollbar-width);
@@ -50,3 +93,4 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #a8bbbf;
 }
+

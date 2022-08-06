@@ -2,6 +2,7 @@ import React from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 
 import { ReactSortable, ItemInterface } from "react-sortablejs";
+import CoinCard from '../CoinCard/CoinCard';
 
 import { selectRenderedCoins, setCoinsToRender } from "../../app/coinSlice";
 
@@ -56,8 +57,7 @@ const CardContainer = () => {
       delay={500}
     >
       {renderedCoins.map((coinName, index) => (
-        // <TiltCoinCard coinName={coinName} key={index} />
-        <p key={index}>{coinName}</p>
+        <CoinCard coinName={coinName} key={index} />
       ))}
       {/* <TiltCoinCardCreatorCard /> */}
     </ReactSortable>

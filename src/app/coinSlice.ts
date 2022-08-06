@@ -3,8 +3,20 @@ import { RootState } from "./store";
 import { reducers, fetchAPI } from "../reducers/coinReducer";
 
 import ICoinState from "../interfaces/ICoinState";
+import ICoin from "../interfaces/ICoin";
+import ICoinAPI from "../interfaces/ICoinAPI";
 
 import { SLICE_NAMES } from "../constants";
+
+const extractData = (coinsFromAPI: ICoinAPI[]): ICoin[] =>
+  coinsFromAPI.map((coin) => {
+    return {
+      name: coin.name,
+      symbol: coin.symbol,
+      image: coin.image.large,
+      priceInUSD: coin.market_data.current_price.usd,
+    };
+  });
 
 const initialState: ICoinState = {
   value: [],
@@ -23,7 +35,7 @@ export const coinSlice = createSlice({
       })
       .addCase(fetchAPI.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.allCoins = action.payload;
+        state.allCoins = extractData(action.payload);
       });
   },
 });
