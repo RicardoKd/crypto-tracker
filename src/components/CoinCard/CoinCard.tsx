@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useAppDispatch } from "../../app/hooks";
 
 import CoinCardFrontFace from "./FrontFace/CoinCardFrontFace";
+import CoinsList from "../CoinList/CoinList";
+
+import { updateRenderedCoin } from "../../app/coinSlice";
 
 import ICoinCardProps from "../../interfaces/propsInterfaces/ICoinCardProps";
 
@@ -9,6 +13,8 @@ import "../../index.css";
 
 const CoinCard = ({ coinName }: ICoinCardProps) => {
   const [showCoinList, setShowCoinList] = useState(false);
+
+  const dispatch = useAppDispatch();
 
   return (
     <div className={`card ${styles.coinCard}`}>
@@ -32,6 +38,17 @@ const CoinCard = ({ coinName }: ICoinCardProps) => {
         >
           &#60;
         </button>
+        <CoinsList
+          listItemOnClick={(e) => {
+            dispatch(
+              updateRenderedCoin({
+                oldName: coinName,
+                newName: (e.target as HTMLElement).innerText,
+              }),
+            );
+            setShowCoinList(false);
+          }}
+        />
       </div>
     </div>
   );
