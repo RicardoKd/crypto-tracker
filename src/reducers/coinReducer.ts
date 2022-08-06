@@ -1,7 +1,11 @@
 import { createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { TOP_50_COINS } from "../constants";
+import { TOP_50_COINS, LOCAL_STORAGE_RENDERED_CARDS_KEY } from "../constants";
 
 import ICoinState from "../interfaces/ICoinState";
+
+const updateRenderedCoinsInLocalStorage = (stateValue: string[]) => {
+  localStorage.setItem(LOCAL_STORAGE_RENDERED_CARDS_KEY, stateValue.join(","));
+};
 
 export const fetchAPI = createAsyncThunk("coins/fetchAPI", async () => {
   const response = await fetch(TOP_50_COINS);
@@ -17,6 +21,8 @@ export const reducers = {
       value: [...state.value, action.payload],
     };
 
+    updateRenderedCoinsInLocalStorage(newState.value);
+
     return newState;
   },
   setCoinsToRender(state: ICoinState, action: PayloadAction<string[]>) {
@@ -24,6 +30,9 @@ export const reducers = {
       ...state,
       value: [...action.payload],
     };
+
+    updateRenderedCoinsInLocalStorage(newState.value);
+
     return newState;
   },
   removeCoinFromRender(state: ICoinState, action: PayloadAction<string>) {
@@ -31,6 +40,8 @@ export const reducers = {
       ...state,
       value: state.value.filter((coinName) => coinName !== action.payload),
     };
+
+    updateRenderedCoinsInLocalStorage(newState.value);
 
     return newState;
   },
@@ -49,6 +60,8 @@ export const reducers = {
       ...state,
       value: renderedCoinsCopy,
     };
+
+    updateRenderedCoinsInLocalStorage(newState.value);
 
     return newState;
   },
