@@ -2,11 +2,15 @@ import React, { useState } from "react";
 
 import CoinCardMenu from "./CoinCardMenu";
 
-import ICoinCardMenuTogglerProps from '../../interfaces/propsInterfaces/ICoinCardMenuTogglerProps';
+import ICoinCardMenuTogglerProps from "../../interfaces/propsInterfaces/ICoinCardMenuTogglerProps";
 
 import styles from "./CoinCardMenu.module.css";
 
-const CoinCardMenuToggler = ({ coinName, showCoinList, setShowCoinList }: ICoinCardMenuTogglerProps) => {
+const CoinCardMenuToggler = ({
+  coinName,
+  showCoinList,
+  setShowCoinList,
+}: ICoinCardMenuTogglerProps) => {
   const [showCoinCardMenu, setShowCoinCardMenu] = useState(false);
 
   return (
