@@ -3,7 +3,7 @@ import { useAppSelector } from "../../../app/hooks";
 
 import { selectAllCoins } from "../../../app/coinSlice";
 
-// import CoinCardMenuToggler from "../../CoinCardMenu/CoinCardMenuToggler";
+import CoinCardMenuToggler from "../../CoinCardMenu/CoinCardMenuToggler";
 
 import ICoin from "../../../interfaces/ICoin";
 import ICoinCardFrontFaceProps from "../../../interfaces/propsInterfaces/ICoinCardFrontFaceProps";
@@ -28,6 +28,12 @@ const CoinCardFrontFace = ({
 
   return (
     <div>
+      <CoinCardMenuToggler
+        coinName={name}
+        showCoinList={showCoinList}
+        setShowCoinList={setShowCoinList}
+      />
+
       <img
         className={styles.cardImg}
         src={image}
