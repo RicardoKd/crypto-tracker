@@ -1,22 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { reducers, fetchAPI } from "../reducers/coinReducer";
-
-import ICoinState from "../interfaces/ICoinState";
-import ICoin from "../interfaces/ICoin";
-import ICoinAPI from "../interfaces/ICoinAPI";
+import { createSlice } from "@reduxjs/toolkit";
 
 import { SLICE_NAMES } from "../constants";
-
-const extractData = (coinsFromAPI: ICoinAPI[]): ICoin[] =>
-  coinsFromAPI.map((coin) => {
-    return {
-      name: coin.name,
-      symbol: coin.symbol,
-      image: coin.image.large,
-      priceInUSD: coin.market_data.current_price.usd,
-    };
-  });
+import ICoinState from "../interfaces/ICoinState";
+import { reducers, fetchAPI } from "../reducers/coinReducer";
 
 const initialState: ICoinState = {
   value: [],
@@ -35,7 +22,7 @@ export const coinSlice = createSlice({
       })
       .addCase(fetchAPI.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.allCoins = extractData(action.payload);
+        state.allCoins = action.payload;
       });
   },
 });

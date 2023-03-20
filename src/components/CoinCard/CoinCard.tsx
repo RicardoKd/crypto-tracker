@@ -44,7 +44,7 @@ const CoinCard = ({ coinName }: ICoinCardProps) => {
               updateRenderedCoin({
                 oldName: coinName,
                 newName: (e.target as HTMLElement).innerText,
-              }),
+              })
             );
             setShowCoinList(false);
           }}
